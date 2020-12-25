@@ -4,12 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.os.Handler;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.ViewSwitcher;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -32,7 +31,7 @@ public class SplashScreen extends AppCompatActivity {
 
         // Hook
         this.titleImage = (ImageView) findViewById(R.id.title);
-        this.logo = (ImageView) findViewById(R.id.logo);
+        this.logo = (ImageView) findViewById(R.id.login_form);
 //        this.logo = (ViewSwitcher) findViewById(R.id.logo);
         this.poweredBy = (TextView) findViewById(R.id.powered_by);
 
@@ -47,31 +46,31 @@ public class SplashScreen extends AppCompatActivity {
         this.logo.setAnimation(fade_in);
         this.poweredBy.setAnimation(fade_in);
 
-        Thread thread = new Thread(){
-            @Override
-            public void run() {
-                try {
-                    super.run();
-                    sleep(SPLASH_TIMER);
-                } catch (Exception e) {
-
-                } finally {
-                    Intent intent = new Intent(SplashScreen.this, MainActivity.class);
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-                    finish();
-                }
-            }
-        };
-        thread.start();
-//        new Handler().postDelayed(new Runnable() {
+//        Thread thread = new Thread(){
 //            @Override
 //            public void run() {
-//                Intent intent = new Intent(SplashScreen.this, MainActivity.class);
-//                startActivity(intent);
-//                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-//                finish();
+//                try {
+//                    super.run();
+//                    sleep(SPLASH_TIMER);
+//                } catch (Exception e) {
+//
+//                } finally {
+//                    Intent intent = new Intent(SplashScreen.this, Login.class);
+//                    startActivity(intent);
+//                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+//                    finish();
+//                }
 //            }
-//        }, SPLASH_TIMER);
+//        };
+//        thread.start();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(SplashScreen.this, Login.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                finish();
+            }
+        }, SPLASH_TIMER);
     }
 }
