@@ -43,7 +43,7 @@ public class Login extends AppCompatActivity {
     View.OnClickListener goToSignupPage = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(Login.this, Signup.class);
+            Intent intent = new Intent(getApplicationContext(), Signup.class);
             startActivity(intent);
         }
     };
@@ -51,6 +51,8 @@ public class Login extends AppCompatActivity {
     View.OnClickListener goToForgetPasswordPage = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            Intent intent = new Intent(getApplicationContext(), ForgetPassword.class);
+            startActivity(intent);
         }
     };
 
