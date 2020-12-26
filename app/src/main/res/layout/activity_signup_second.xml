@@ -12,32 +12,19 @@
         android:layout_height="match_parent"
         tools:context=".SignupSecond">
 
-        <ImageView
-            android:id="@+id/title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="50dp"
-            app:layout_constraintBottom_toTopOf="@+id/login_form"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_wimpy_kid_logo" />
-
         <LinearLayout
             android:id="@+id/login_form"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="40dp"
             android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/powered_by"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -100,35 +87,35 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10sp"
+                android:layout_marginTop="5sp"
                 android:text="Select Gender"
                 android:textColor="@color/colorSecondaryAlt"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
             <RadioGroup
                 android:id="@+id/rg_gender"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
                 android:layout_gravity="center"
-                android:layout_marginTop="10sp">
+                android:layout_marginTop="5sp"
+                android:orientation="horizontal">
 
                 <RadioButton
                     android:id="@+id/rb_male"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColorHighlight="@color/colorSecondaryAlt"
                     android:text="Male"
-                    android:textColor="@color/colorSecondaryAlt"/>
+                    android:textColor="@color/colorSecondaryAlt"
+                    android:textColorHighlight="@color/colorSecondaryAlt" />
 
                 <RadioButton
                     android:id="@+id/rb_female"
-                    android:layout_marginLeft="20sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="20sp"
                     android:text="Female"
-                    android:textColorHighlight="@color/colorSecondaryAlt"
-                    android:textColor="@color/colorSecondaryAlt"/>
+                    android:textColor="@color/colorSecondaryAlt"
+                    android:textColorHighlight="@color/colorSecondaryAlt" />
             </RadioGroup>
 
             <TextView
@@ -137,7 +124,7 @@
                 android:layout_marginTop="10sp"
                 android:text="Select Your Age"
                 android:textColor="@color/colorSecondaryAlt"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
             <DatePicker
                 android:id="@+id/date_picker"
@@ -173,21 +160,5 @@
                 android:textSize="18sp" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/powered_by"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="serif"
-            android:text="@string/powered_by"
-            android:textAlignment="center"
-            android:textColor="@color/colorSecondaryAlt"
-            app:autoSizeMaxTextSize="100sp"
-            app:autoSizeMinTextSize="15sp"
-            app:autoSizeStepGranularity="5sp"
-            app:autoSizeTextType="uniform"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login_form" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

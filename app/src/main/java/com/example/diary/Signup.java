@@ -2,7 +2,6 @@ package com.example.diary;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.EntityIterator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,7 +18,7 @@ public class Signup extends AppCompatActivity {
     EditText etUsername;
     EditText etEmail;
     EditText etPassword;
-    EditText etPasswordAgain;
+    EditText etPasswordConfirm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +41,7 @@ public class Signup extends AppCompatActivity {
         this.etUsername = (EditText) findViewById(R.id.et_username);
         this.etEmail = (EditText) findViewById(R.id.et_email);
         this.etPassword = (EditText) findViewById(R.id.et_password);
-        this.etPasswordAgain = (EditText) findViewById(R.id.et_password_again);
+        this.etPasswordConfirm = (EditText) findViewById(R.id.et_password_confirm);
     }
 
     // Click Listeners
