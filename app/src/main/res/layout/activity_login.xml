@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@color/colorPrimaryAlt"
     android:layout_height="match_parent"
-    tools:context=".SplashScreen">
+    tools:context=".Login">
 
     <ImageView
         android:id="@+id/title"
