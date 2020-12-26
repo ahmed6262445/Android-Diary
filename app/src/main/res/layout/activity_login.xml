@@ -45,61 +45,79 @@
             android:textSize="25sp" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_username"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20sp">
-
+            android:layout_marginTop="5sp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/colorSecondaryAlt"
+            app:boxBackgroundColor="@color/colorPrimaryAlt"
+            android:textColorHint="@color/colorSecondaryAlt"
+            app:startIconDrawable="@drawable/ic_baseline_person_24"
+            app:startIconTint="@color/colorSecondaryAlt"
+            android:hint="Username">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_username"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Username" />
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorSecondaryAlt"
+                android:fontFamily="serif"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_password"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10sp"
-            app:passwordToggleEnabled="true">
-
+            android:layout_marginTop="5sp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/colorSecondaryAlt"
+            app:boxBackgroundColor="@color/colorPrimaryAlt"
+            android:textColorHint="@color/colorSecondaryAlt"
+            app:startIconDrawable="@drawable/ic_baseline_lock"
+            app:startIconTint="@color/colorSecondaryAlt"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/colorSecondaryAlt"
+            android:hint="Password">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Password"
-                android:inputType="textPassword" />
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorSecondaryAlt"
+                android:inputType="textPassword"
+                android:fontFamily="serif"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_forget"
-            android:layout_width="200sp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:background="#00000000"
-            android:text="Forget Password?" />
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:shadowColor="@color/colorPrimaryAlt"
+            android:shadowRadius="0"
+            android:text="Forget Password?"
+            android:fontFamily="serif"
+            android:textColor="@color/colorSecondaryAlt"
+            android:backgroundTint="#00000000"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5sp"
-            android:layout_marginBottom="5sp"
-            android:background="@color/colorSecondaryAlt"
+            android:layout_marginBottom="10sp"
             android:text="Login"
+            android:fontFamily="serif"
+            android:textSize="18sp"
             android:textColor="@color/colorPrimaryAlt" />
 
-        <Button
-            android:id="@+id/btn_signup"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_singup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5sp"
-            android:layout_marginBottom="5sp"
-            android:background="#00000000"
-            android:text="NEW USER? SIGN UP" />
+            android:text="Sign up"
+            android:fontFamily="serif"
+            android:textSize="18sp"
+            android:textColor="@color/colorPrimaryAlt" />
     </LinearLayout>
 
     <TextView
