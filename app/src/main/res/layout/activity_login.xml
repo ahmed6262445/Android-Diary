@@ -42,13 +42,14 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="serif"
+                android:fontFamily="sans-serif-black"
                 android:text="Login"
                 android:textAlignment="center"
                 android:textColor="@color/colorSecondaryAlt"
                 android:textSize="25sp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_username"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,14 +62,14 @@
                 app:startIconTint="@color/colorSecondaryAlt">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/til_username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="serif"
+                    android:fontFamily="sans-serif"
                     android:textColor="@color/colorSecondaryAlt" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_password"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -83,10 +84,9 @@
                 app:startIconTint="@color/colorSecondaryAlt">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/til_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="serif"
+                    android:fontFamily="sans-serif"
                     android:inputType="textPassword"
                     android:textColor="@color/colorSecondaryAlt" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -98,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:backgroundTint="#00000000"
-                android:fontFamily="serif"
+                android:fontFamily="sans-serif"
                 android:shadowColor="@color/colorPrimaryAlt"
                 android:shadowRadius="0"
                 android:text="Forget Password?"
@@ -110,7 +110,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5sp"
                 android:layout_marginBottom="10sp"
-                android:fontFamily="serif"
+                android:fontFamily="sans-serif"
                 android:text="Login"
                 android:textColor="@color/colorPrimaryAlt"
                 android:textSize="18sp" />
@@ -122,7 +122,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5sp"
                 android:backgroundTint="#00000000"
-                android:fontFamily="serif"
+                android:fontFamily="sans-serif"
                 android:shadowColor="@color/colorPrimaryAlt"
                 android:shadowRadius="0"
                 android:text="Sign Up"
@@ -134,7 +134,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:fontFamily="serif"
+            android:fontFamily="sans-serif"
             android:text="@string/powered_by"
             android:textAlignment="center"
             android:textColor="@color/colorSecondaryAlt"

@@ -7,7 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
+
+import com.google.android.material.textfield.TextInputLayout;
 
 public class Login extends AppCompatActivity {
 
@@ -15,8 +16,8 @@ public class Login extends AppCompatActivity {
     Button btnSignup;
     Button btnForget;
 
-    EditText etUsername;
-    EditText etPassword;
+    TextInputLayout tilUsername;
+    TextInputLayout tilPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +36,45 @@ public class Login extends AppCompatActivity {
         this.btnSignup.setOnClickListener(goToSignupPage);
         this.btnForget.setOnClickListener(goToForgetPasswordPage);
 
-        this.etUsername = (EditText) findViewById(R.id.til_username);
-        this.etPassword = (EditText) findViewById(R.id.til_password);
+        this.tilUsername = (TextInputLayout) findViewById(R.id.til_username);
+        this.tilPassword = (TextInputLayout) findViewById(R.id.til_password);
+    }
+
+    // Validations
+    private boolean validateUsername() {
+        String value = this.tilUsername.getEditText().getText().toString().trim();
+        String checkspaces = "\\A\\w{1,20}\\z";
+
+        boolean isValid = true;
+
+        if (value.isEmpty()) {
+            this.tilUsername.setError("Field can not be empty");
+            isValid = false;
+        }
+        else {
+            this.tilUsername.setError(null);
+            this.tilUsername.setErrorEnabled(false);
+            isValid = true;
+        }
+        return isValid;
+    }
+
+    private boolean validatePassword() {
+        String value = this.tilPassword.getEditText().getText().toString().trim();
+        String checkspaces = "\\A\\w{1,20}\\z";
+
+        boolean isValid = true;
+
+        if (value.isEmpty()) {
+            this.tilPassword.setError("Field can not be empty");
+            isValid = false;
+        }
+        else {
+            this.tilPassword.setError(null);
+            this.tilPassword.setErrorEnabled(false);
+            isValid = true;
+        }
+        return isValid;
     }
 
     // Click Listeners
@@ -59,6 +97,10 @@ public class Login extends AppCompatActivity {
     View.OnClickListener login = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+
+            if(!validateUsername() | !validatePassword()) {
+                return;
+            }
         }
     };
 }
