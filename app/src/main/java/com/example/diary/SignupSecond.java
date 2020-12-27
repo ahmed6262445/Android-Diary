@@ -17,20 +17,28 @@ import android.widget.Toast;
 
 import com.example.diary.Models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
+import java.util.Map;
 
 import static android.content.ContentValues.TAG;
 
 public class SignupSecond extends AppCompatActivity {
 
+    User user;
+
     FirebaseAuth firebaseAuth;
+    FirebaseFirestore firestore;
 
     Button btnBack;
     Button btnLogin;
@@ -53,6 +61,7 @@ public class SignupSecond extends AppCompatActivity {
     public void initializeComponents() {
 
         this.firebaseAuth = FirebaseAuth.getInstance();
+        this.firestore = FirebaseFirestore.getInstance();
 
         this.btnBack = (Button) findViewById(R.id.btn_back);
         this.btnSignup = (Button) findViewById(R.id.btn_signup);
@@ -135,7 +144,7 @@ public class SignupSecond extends AppCompatActivity {
             }
 
             Intent oldIntent = getIntent();
-            User user = (User) oldIntent.getSerializableExtra("user");
+            user = (User) oldIntent.getSerializableExtra("user");
 
             user.setFullname(tilFullname.getEditText().getText().toString().trim());
             user.setDay(datePicker.getDayOfMonth());
@@ -149,33 +158,56 @@ public class SignupSecond extends AppCompatActivity {
                 user.setMale(false);
             }
 
-            register(user);
+            register();
 //            Intent intent = new Intent(getApplicationContext(), SignupSecond.class);
 //            startActivity(intent);
         }
     };
 
 
-    public void register(User user) {
-        this.firebaseAuth.createUserWithEmailAndPassword(user.getEmail(), user.getPassword())
+    public void register() {
+        this.firebaseAuth.createUserWithEmailAndPassword(this.user.getEmail(), this.user.getPassword())
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
-                            Toast.makeText(getApplicationContext(), "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            FirebaseUser user = firebaseAuth.getCurrentUser();
-//                            updateUI(user);
+                            user.setId(firebaseAuth.getCurrentUser().getUid());
+                            DocumentReference documentReference = firestore.collection("users").document(user.getId());
+
+                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(getApplicationContext(), "Sign up done!\nYou may proceed",
+                                            Toast.LENGTH_SHORT).show();
+                                    Log.d(TAG, "onSucess: user profile is created for " + user.getId());
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getApplicationContext(), "Unable to register user at the moment\n" +
+                                                    "Please try later",
+                                            Toast.LENGTH_SHORT).show();
+                                    Log.d(TAG, "onFail: Unable to register user");
+
+                                    Intent intent = new Intent(getApplicationContext(), Login.class);
+                                    startActivity(intent);
+                                }
+                            });
+
+                            Intent intent = new Intent(getApplicationContext(), Login.class);
+                            startActivity(intent);
+                            finish();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(getApplicationContext(), "Authentication failed.",
+                            Toast.makeText(getApplicationContext(), "Unable to register user at the moment\n" +
+                                    "Please try later",
                                     Toast.LENGTH_SHORT).show();
-//                            updateUI(null);
+                            Intent intent = new Intent(getApplicationContext(), Login.class);
+                            startActivity(intent);
                         }
-                        // ...
                     }
                 });
     }

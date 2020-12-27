@@ -18,6 +18,7 @@ import java.util.Date;
 import static android.content.ContentValues.TAG;
 
 public class User implements Serializable {
+    private String id;
     private String username;
     private String email;
     private String password;
@@ -30,14 +31,23 @@ public class User implements Serializable {
     public User() {
     }
 
+    public User(String id, String username, String email, String password, String fullname) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.fullname = fullname;
+    }
+
     public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
     }
 
-    public User(String username, String email, String password, String fullname, boolean isMale,
+    public User(String id, String username, String email, String password, String fullname, boolean isMale,
                 int day, int month, int year) {
+        this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -46,6 +56,14 @@ public class User implements Serializable {
         this.day = day;
         this.month = month;
         this.year = year;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getUsername() {
