@@ -54,11 +54,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5sp"
-                android:hint="Username"
+                android:hint="Email"
                 android:textColorHint="@color/colorSecondaryAlt"
                 app:boxBackgroundColor="@color/colorPrimaryAlt"
                 app:boxStrokeColor="@color/colorSecondaryAlt"
-                app:startIconDrawable="@drawable/ic_baseline_person_24"
+                app:startIconDrawable="@drawable/ic_baseline_email"
                 app:startIconTint="@color/colorSecondaryAlt">
 
                 <com.google.android.material.textfield.TextInputEditText
