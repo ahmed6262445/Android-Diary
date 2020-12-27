@@ -8,8 +8,14 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
+
+import com.example.diary.Models.User;
+import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.Calendar;
 
 public class SignupSecond extends AppCompatActivity {
 
@@ -17,8 +23,9 @@ public class SignupSecond extends AppCompatActivity {
     Button btnLogin;
     Button btnSignup;
 
-    EditText etFullname;
+    TextInputLayout tilFullname;
     RadioGroup rgGender;
+    RadioButton rbMale;
     DatePicker datePicker;
 
     @Override
@@ -39,9 +46,52 @@ public class SignupSecond extends AppCompatActivity {
         this.btnBack.setOnClickListener(goToSignupPage);
         this.btnLogin.setOnClickListener(goToLoginPage);
 
-        this.etFullname = (EditText) findViewById(R.id.et_fullName);
+        this.tilFullname = (TextInputLayout) findViewById(R.id.til_fullName);
         this.rgGender = (RadioGroup) findViewById(R.id.rg_gender);
+        this.rbMale = (RadioButton) findViewById(R.id.rb_male);
+        this.rbMale.setChecked(true);
         this.datePicker = (DatePicker) findViewById(R.id.date_picker);
+    }
+
+    // Validations
+    private boolean validateUsername() {
+        String value = this.tilFullname.getEditText().getText().toString().trim();
+        String checkspaces = "\\A\\w{1,20}\\z";
+
+        boolean isValid = true;
+
+        if (value.isEmpty()) {
+            this.tilFullname.setError("Field can not be empty");
+            isValid = false;
+        }
+        else if (value.length()>50) {
+            this.tilFullname.setError("Can not have more then 50 characters");
+            isValid = false;
+        }
+        else {
+            this.tilFullname.setError(null);
+            this.tilFullname.setErrorEnabled(false);
+            isValid = true;
+        }
+        return isValid;
+    }
+
+    private boolean validateAge() {
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        int userAge = datePicker.getYear();
+        int age = currentYear - userAge;
+
+        boolean isValid = true;
+        if (age < 0) {
+            Toast.makeText(getApplicationContext(), "Please enter valid age", Toast.LENGTH_LONG).show();
+            isValid = false;
+        }
+        else if (age < 5) {
+            Toast.makeText(getApplicationContext(), "You are not eligible to apply", Toast.LENGTH_LONG).show();
+            isValid = false;
+        }
+
+        return isValid;
     }
 
     // Click Listeners
@@ -64,6 +114,24 @@ public class SignupSecond extends AppCompatActivity {
     private View.OnClickListener signUp = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            if (!validateUsername() | !validateAge()) {
+                return;
+            }
+
+            Intent oldIntent = getIntent();
+            User user = (User) oldIntent.getSerializableExtra("user");
+
+            user.setFullname(tilFullname.getEditText().getText().toString().trim());
+            user.setDay(datePicker.getDayOfMonth());
+            user.setMonth(datePicker.getMonth());
+            user.setYear(datePicker.getYear());
+
+            if (rbMale.isChecked()) {
+                user.setMale(true);
+            }
+            else {
+                user.setMale(false);
+            }
 //            Intent intent = new Intent(getApplicationContext(), SignupSecond.class);
 //            startActivity(intent);
         }

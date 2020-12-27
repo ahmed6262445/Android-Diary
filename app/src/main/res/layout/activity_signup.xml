@@ -37,7 +37,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#00000000"
-                    android:fontFamily="serif"
+                    android:fontFamily="sans-serif"
                     android:shadowColor="@color/colorPrimaryAlt"
                     android:shadowRadius="0"
                     android:text=""
@@ -52,7 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:fontFamily="serif"
+                    android:fontFamily="sans-serif-black"
                     android:text="Sign Up"
                     android:textAlignment="center"
                     android:textColor="@color/colorSecondaryAlt"
@@ -65,6 +65,7 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_username"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -77,14 +78,14 @@
                 app:startIconTint="@color/colorSecondaryAlt">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="serif"
+                    android:fontFamily="sans-serif"
                     android:textColor="@color/colorSecondaryAlt" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_email"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -97,14 +98,14 @@
                 app:startIconTint="@color/colorSecondaryAlt">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="serif"
+                    android:fontFamily="sans-serif"
                     android:textColor="@color/colorSecondaryAlt" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_password"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -119,15 +120,15 @@
                 app:startIconTint="@color/colorSecondaryAlt">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="serif"
+                    android:fontFamily="sans-serif"
                     android:inputType="textPassword"
                     android:textColor="@color/colorSecondaryAlt" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_password_confirm"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -142,10 +143,9 @@
                 app:startIconTint="@color/colorSecondaryAlt">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_password_confirm"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="serif"
+                    android:fontFamily="sans-serif"
                     android:inputType="textPassword"
                     android:textColor="@color/colorSecondaryAlt" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -156,7 +156,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15sp"
                 android:layout_marginBottom="10sp"
-                android:fontFamily="serif"
+                android:fontFamily="sans-serif"
                 android:text="Next"
                 android:textColor="@color/colorPrimaryAlt"
                 android:textSize="18sp" />
@@ -167,7 +167,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#00000000"
-                android:fontFamily="serif"
+                android:fontFamily="sans-serif"
                 android:shadowColor="@color/colorPrimaryAlt"
                 android:shadowRadius="0"
                 android:text="Login"

@@ -35,8 +35,8 @@ public class Login extends AppCompatActivity {
         this.btnSignup.setOnClickListener(goToSignupPage);
         this.btnForget.setOnClickListener(goToForgetPasswordPage);
 
-        this.etUsername = (EditText) findViewById(R.id.et_username);
-        this.etPassword = (EditText) findViewById(R.id.et_password);
+        this.etUsername = (EditText) findViewById(R.id.til_username);
+        this.etPassword = (EditText) findViewById(R.id.til_password);
     }
 
     // Click Listeners
