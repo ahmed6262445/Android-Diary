@@ -1,9 +1,12 @@
 package com.example.diary;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -13,11 +16,21 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.diary.Models.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Calendar;
 
+import static android.content.ContentValues.TAG;
+
 public class SignupSecond extends AppCompatActivity {
+
+    FirebaseAuth firebaseAuth;
 
     Button btnBack;
     Button btnLogin;
@@ -32,12 +45,15 @@ public class SignupSecond extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_second);
-
+        FirebaseApp.initializeApp(this);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         initializeComponents();
     }
 
     public void initializeComponents() {
+
+        this.firebaseAuth = FirebaseAuth.getInstance();
+
         this.btnBack = (Button) findViewById(R.id.btn_back);
         this.btnSignup = (Button) findViewById(R.id.btn_signup);
         this.btnLogin = (Button) findViewById(R.id.btn_login);
@@ -132,8 +148,35 @@ public class SignupSecond extends AppCompatActivity {
             else {
                 user.setMale(false);
             }
+
+            register(user);
 //            Intent intent = new Intent(getApplicationContext(), SignupSecond.class);
 //            startActivity(intent);
         }
     };
+
+
+    public void register(User user) {
+        this.firebaseAuth.createUserWithEmailAndPassword(user.getEmail(), user.getPassword())
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "createUserWithEmail:success");
+                            Toast.makeText(getApplicationContext(), "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                            FirebaseUser user = firebaseAuth.getCurrentUser();
+//                            updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                            Toast.makeText(getApplicationContext(), "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+//                            updateUI(null);
+                        }
+                        // ...
+                    }
+                });
+    }
 }
