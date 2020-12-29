@@ -3,14 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".HomeFragment"
     android:background="@color/colorPrimaryAlt">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"
-        android:textColor="@color/colorSecondaryAlt"/>
-
+        android:layout_height="match_parent">
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_add_new_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="25sp"
+            android:clickable="true"
+            app:backgroundTint="@color/colorSecondaryAlt"
+            app:tint="@color/colorPrimaryAlt"
+            app:srcCompat="@drawable/ic_baseline_add"
+            android:layout_alignParentRight="true"
+            app:rippleColor="@color/colorPrimaryAlt"/>
+    </RelativeLayout>
 </FrameLayout>

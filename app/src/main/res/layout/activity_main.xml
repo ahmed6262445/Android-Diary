@@ -5,9 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/colorPrimaryAlt"
-    android:id="@+id/fragment_container">
+    android:background="@color/colorPrimaryAlt">
 
+<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:menu="@menu/nav_menu"-->
+<!--        app:itemIconTint="@color/colorPrimaryAlt"-->
+<!--        app:itemTextColor="@color/colorPrimaryAlt"-->
+<!--        />-->
     <com.ismaeldivita.chipnavigation.ChipNavigationBar
         android:id="@+id/nav_menu"
         android:layout_width="match_parent"
@@ -16,23 +22,19 @@
         android:layout_alignParentBottom="true"
         android:background="@drawable/round_corners"
         app:cnb_unselectedColor="@color/colorPrimaryAlt"
-        app:cnb_radius="8dp"
         android:backgroundTint="@color/colorSecondaryAlt"
         app:cnb_orientationMode="horizontal"
-        android:layout_margin="30dp"
-        android:elevation="8dp"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
+        android:layout_marginBottom="10sp"
+        android:elevation="40dp"
         />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_add_new_post"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="25sp"
-        android:clickable="true"
-        app:backgroundTint="@color/colorSecondaryAlt"
-        app:tint="@color/colorPrimaryAlt"
-        app:srcCompat="@drawable/ic_baseline_add"
-        android:layout_alignParentRight="true"
-        app:rippleColor="@color/colorPrimaryAlt"/>
+    <RelativeLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/nav_menu">
 
+    </RelativeLayout>
 </RelativeLayout>
