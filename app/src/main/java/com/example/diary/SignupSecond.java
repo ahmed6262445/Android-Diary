@@ -28,6 +28,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Map;
 
@@ -174,7 +175,11 @@ public class SignupSecond extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             user.setId(firebaseAuth.getCurrentUser().getUid());
-                            DocumentReference documentReference = firestore.collection("users").document(user.getId());
+
+                            DocumentReference documentReference = firestore.collection("users")
+                                    .document(user.getId())
+                                    .collection("user_data")
+                                    .document();
 
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override

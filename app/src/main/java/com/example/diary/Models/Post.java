@@ -1,6 +1,7 @@
 package com.example.diary.Models;
 
 public class Post {
+
     int day;
     int month;
     int year;

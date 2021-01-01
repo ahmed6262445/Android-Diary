@@ -35,6 +35,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -82,6 +83,7 @@ public class AddPostFragment extends Fragment {
     FirebaseFirestore firestore;
     FirebaseStorage firebaseStorage;
     StorageReference storageReference;
+//    FirebaseDatabase firebaseDatabase;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -93,10 +95,11 @@ public class AddPostFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        firebaseAuth = FirebaseAuth.getInstance();
-        firestore = FirebaseFirestore.getInstance();
-        firebaseStorage = FirebaseStorage.getInstance();
-        storageReference = firebaseStorage.getReference();
+        this.firebaseAuth = FirebaseAuth.getInstance();
+        this.firestore = FirebaseFirestore.getInstance();
+        this.firebaseStorage = FirebaseStorage.getInstance();
+        this.storageReference = firebaseStorage.getReference();
+//        this.firebaseDatabase = FirebaseDatabase.getInstance();
 
         this.btnAddImage = (Button) view.findViewById(R.id.btn_add_image);
         this.btnRemoveImage = (Button) view.findViewById(R.id.btn_remove_image);
@@ -208,23 +211,18 @@ public class AddPostFragment extends Fragment {
 
             FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
-            post.setPhoto("images/" + firebaseUser.getUid().toString()
-                    + "/" + String.valueOf(maxId+1)
-                    + "/" + new File(String.valueOf(selectedImageUri)).getName().toString());
+            if (selectedImageUri != null) {
+                post.setPhoto("images/" + firebaseUser.getUid().toString()
+                        + "/" + String.valueOf(maxId+1)
+                        + "/" + new File(String.valueOf(selectedImageUri)).getName().toString());
+            }
+            else {
+                post.setPhoto(null);
+            }
 
-            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("posts");
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    maxId = (snapshot.getChildrenCount());
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-
-            DocumentReference documentReference = firestore.collection("posts").document(String.valueOf(maxId+1));
+            DocumentReference documentReference = firestore.collection("users")
+                    .document(firebaseUser.getUid().toString()).collection("posts").document();
+            String postId = documentReference.getId();
 
             documentReference.set(post).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
@@ -247,7 +245,7 @@ public class AddPostFragment extends Fragment {
 //                ProgressBar progressBar = new ProgressBar(getContext());
 
                 StorageReference ref = storageReference.child("images/" + firebaseUser.getUid().toString()
-                        + "/" + String.valueOf(maxId+1)
+                        + "/" + postId.toString()
                         + "/" + new File(String.valueOf(selectedImageUri)).getName().toString());
 
                 ref.putFile(selectedImageUri)
