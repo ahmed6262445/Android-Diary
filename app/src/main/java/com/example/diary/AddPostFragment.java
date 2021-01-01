@@ -190,6 +190,10 @@ public class AddPostFragment extends Fragment {
         @Override
         public void onClick(View v) {
 
+            if(!validatePost() | !validateEmotions()) {
+                return;
+            }
+
             Post post = new Post();
             post.setPost(tilPost.getEditText().getText().toString());
             post.setDay(datePicker.getDayOfMonth());
@@ -313,4 +317,53 @@ public class AddPostFragment extends Fragment {
             }
         }
     };
+
+    // Validations
+    private boolean validatePost() {
+        String value = this.tilPost.getEditText().getText().toString().trim();
+
+        boolean isValid = true;
+
+        if (value.isEmpty()) {
+            this.tilPost.setError("Field can not be empty");
+            isValid = false;
+        }
+        else {
+            this.tilPost.setError(null);
+            this.tilPost.setErrorEnabled(false);
+            isValid = true;
+        }
+        return isValid;
+    }
+
+    private boolean validateEmotions() {
+        int isChecked = this.rgEmotions.getCheckedRadioButtonId();
+
+        boolean isValid = true;
+
+        if (isChecked == -1) {
+            this.rbExcited.setError("Select an emotion!");
+            this.rbAngry.setError("Select an emotion!");
+            this.rbDisappointed.setError("Select an emotion!");
+            this.rbContent.setError("Select an emotion!");
+            this.rbHappy.setError("Select an emotion!");
+            this.rbNaughty.setError("Select an emotion!");
+            this.rbLove.setError("Select an emotion!");
+            this.rbSad.setError("Select an emotion!");
+
+            isValid = false;
+        }
+        else {
+            this.rbExcited.setError(null);
+            this.rbAngry.setError(null);
+            this.rbDisappointed.setError(null);
+            this.rbContent.setError(null);
+            this.rbHappy.setError(null);
+            this.rbNaughty.setError(null);
+            this.rbLove.setError(null);
+            this.rbSad.setError(null);
+            isValid = true;
+        }
+        return isValid;
+    }
 }
