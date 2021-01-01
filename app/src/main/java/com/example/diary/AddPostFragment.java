@@ -59,6 +59,7 @@ public class AddPostFragment extends Fragment {
     Button btnAddImage;
     Button btnRemoveImage;
     Button btnAddPost;
+    Button btnBack;
 
     TextInputLayout tilPost;
 
@@ -104,6 +105,7 @@ public class AddPostFragment extends Fragment {
         this.btnAddImage = (Button) view.findViewById(R.id.btn_add_image);
         this.btnRemoveImage = (Button) view.findViewById(R.id.btn_remove_image);
         this.btnAddPost = (Button) view.findViewById(R.id.btn_add_post);
+        this.btnBack = (Button) view.findViewById(R.id.btn_back);
 
         this.tilPost = (TextInputLayout) view.findViewById(R.id.til_post);
 
@@ -125,6 +127,7 @@ public class AddPostFragment extends Fragment {
         this.btnAddImage.setOnClickListener(openImageDialog);
         this.btnRemoveImage.setOnClickListener(removeImage);
         this.btnAddPost.setOnClickListener(addPost);
+        this.btnBack.setOnClickListener(goToHomeView);
     }
 
     // Click Listeners
@@ -171,6 +174,15 @@ public class AddPostFragment extends Fragment {
             btnRemoveImage.setVisibility(View.GONE);
             btnAddImage.setVisibility(View.VISIBLE);
             selectedImageUri = null;
+        }
+    };
+
+    View.OnClickListener goToHomeView = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            getActivity().getSupportFragmentManager().
+                    beginTransaction().
+                    replace(R.id.fragment_container, new HomeFragment()).addToBackStack(null).commit();
         }
     };
 
